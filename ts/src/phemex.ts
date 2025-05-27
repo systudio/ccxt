@@ -573,7 +573,7 @@ export default class phemex extends Exchange {
                 },
             },
             'options': {
-                'brokerId': 'CCXT123456', // updated from CCXT to CCXT123456
+                // 'brokerId': 'CCXT123456', // updated from CCXT to CCXT123456
                 'x-phemex-request-expiry': 60, // in seconds
                 'createOrderByQuoteRequiresPrice': true,
                 'networks': {
@@ -2677,15 +2677,15 @@ export default class phemex extends Exchange {
         const stopLossDefined = (stopLoss !== undefined);
         const takeProfit = this.safeValue (params, 'takeProfit');
         const takeProfitDefined = (takeProfit !== undefined);
-        if (clientOrderId === undefined) {
-            const brokerId = this.safeString (this.options, 'brokerId', 'CCXT123456');
-            if (brokerId !== undefined) {
-                request['clOrdID'] = brokerId + this.uuid16 ();
-            }
-        } else {
-            request['clOrdID'] = clientOrderId;
-            params = this.omit (params, [ 'clOrdID', 'clientOrderId' ]);
-        }
+        // if (clientOrderId === undefined) {
+        //     const brokerId = this.safeString (this.options, 'brokerId', 'CCXT123456');
+        //     if (brokerId !== undefined) {
+        //         request['clOrdID'] = brokerId + this.uuid16 ();
+        //     }
+        // } else {
+        request['clOrdID'] = clientOrderId;
+        params = this.omit (params, [ 'clOrdID', 'clientOrderId' ]);
+        // }
         const triggerPrice = this.safeStringN (params, [ 'stopPx', 'stopPrice', 'triggerPrice' ]);
         if (triggerPrice !== undefined) {
             if (market['settle'] === 'USDT') {
@@ -4550,13 +4550,13 @@ export default class phemex extends Exchange {
             };
             let payload = '';
             if (method === 'POST') {
-                const isOrderPlacement = (path === 'g-orders') || (path === 'spot/orders') || (path === 'orders');
-                if (isOrderPlacement) {
-                    if (this.safeString (params, 'clOrdID') === undefined) {
-                        const id = this.safeString (this.options, 'brokerId', 'CCXT123456');
-                        params['clOrdID'] = id + this.uuid16 ();
-                    }
-                }
+                // const isOrderPlacement = (path === 'g-orders') || (path === 'spot/orders') || (path === 'orders');
+                // if (isOrderPlacement) {
+                //     if (this.safeString (params, 'clOrdID') === undefined) {
+                //         const id = this.safeString (this.options, 'brokerId', 'CCXT123456');
+                //         params['clOrdID'] = id + this.uuid16 ();
+                //     }
+                // }
                 payload = this.json (params);
                 body = payload;
                 headers['Content-Type'] = 'application/json';

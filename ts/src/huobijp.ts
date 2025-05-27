@@ -389,9 +389,9 @@ export default class huobijp extends Exchange {
                 'createOrderMethod': 'privatePostOrderOrdersPlace',
                 'currencyToPrecisionRoundingMode': TRUNCATE,
                 'language': 'en-US',
-                'broker': {
-                    'id': 'AA03022abc',
-                },
+                // 'broker': {
+                //     'id': 'AA03022abc',
+                // },
             },
             'commonCurrencies': {
                 // https://github.com/ccxt/ccxt/issues/6081
@@ -1511,13 +1511,13 @@ export default class huobijp extends Exchange {
             'type': side + '-' + type,
         };
         const clientOrderId = this.safeString2 (params, 'clientOrderId', 'client-order-id'); // must be 64 chars max and unique within 24 hours
-        if (clientOrderId === undefined) {
-            const broker = this.safeValue (this.options, 'broker', {});
-            const brokerId = this.safeString (broker, 'id');
-            request['client-order-id'] = brokerId + this.uuid ();
-        } else {
-            request['client-order-id'] = clientOrderId;
-        }
+        // if (clientOrderId === undefined) {
+        //     const broker = this.safeValue (this.options, 'broker', {});
+        //     const brokerId = this.safeString (broker, 'id');
+        //     request['client-order-id'] = brokerId + this.uuid ();
+        // } else {
+        request['client-order-id'] = clientOrderId;
+        // }
         params = this.omit (params, [ 'clientOrderId', 'client-order-id' ]);
         if ((type === 'market') && (side === 'buy')) {
             let quoteAmount = undefined;

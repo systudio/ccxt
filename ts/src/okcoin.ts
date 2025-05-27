@@ -1675,16 +1675,16 @@ export default class okcoin extends Exchange {
                 request['slTriggerPxType'] = slTriggerPxType;
             }
         }
-        if (clientOrderId === undefined) {
-            const brokerId = this.safeString (this.options, 'brokerId');
-            if (brokerId !== undefined) {
-                request['clOrdId'] = brokerId + this.uuid16 ();
-                request['tag'] = brokerId;
-            }
-        } else {
-            request['clOrdId'] = clientOrderId;
-            params = this.omit (params, [ 'clOrdId', 'clientOrderId' ]);
-        }
+        // if (clientOrderId === undefined) {
+        //     const brokerId = this.safeString (this.options, 'brokerId');
+        //     if (brokerId !== undefined) {
+        //         request['clOrdId'] = brokerId + this.uuid16 ();
+        //         request['tag'] = brokerId;
+        //     }
+        // } else {
+        request['clOrdId'] = clientOrderId;
+        params = this.omit (params, [ 'clOrdId', 'clientOrderId' ]);
+        // }
         return this.extend (request, params);
     }
 

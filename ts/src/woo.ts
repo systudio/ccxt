@@ -312,7 +312,7 @@ export default class woo extends Exchange {
                 'transfer': {
                     'fillResponseFromRequest': true,
                 },
-                'brokerId': 'bc830de7-50f3-460b-9ee0-f430f83f9dad',
+                // 'brokerId': 'bc830de7-50f3-460b-9ee0-f430f83f9dad',
             },
             'features': {
                 'default': {
@@ -2710,17 +2710,17 @@ export default class woo extends Exchange {
         } else {
             this.checkRequiredCredentials ();
             if (method === 'POST' && (path === 'algo/order' || path === 'order')) {
-                const isSandboxMode = this.safeBool (this.options, 'sandboxMode', false);
-                if (!isSandboxMode) {
-                    const applicationId = 'bc830de7-50f3-460b-9ee0-f430f83f9dad';
-                    const brokerId = this.safeString (this.options, 'brokerId', applicationId);
-                    const isTrigger = path.indexOf ('algo') > -1;
-                    if (isTrigger) {
-                        params['brokerId'] = brokerId;
-                    } else {
-                        params['broker_id'] = brokerId;
-                    }
-                }
+                // const isSandboxMode = this.safeBool (this.options, 'sandboxMode', false);
+                // if (!isSandboxMode) {
+                //     const applicationId = 'bc830de7-50f3-460b-9ee0-f430f83f9dad';
+                //     const brokerId = this.safeString (this.options, 'brokerId', applicationId);
+                //     const isTrigger = path.indexOf ('algo') > -1;
+                //     if (isTrigger) {
+                //         params['brokerId'] = brokerId;
+                //     } else {
+                //         params['broker_id'] = brokerId;
+                //     }
+                // }
                 params = this.keysort (params);
             }
             let auth = '';

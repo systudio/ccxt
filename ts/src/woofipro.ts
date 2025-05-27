@@ -300,7 +300,7 @@ export default class woofipro extends Exchange {
             },
             'options': {
                 'sandboxMode': false,
-                'brokerId': 'CCXT',
+                // 'brokerId': 'CCXT',
                 'verifyingContractAddress': '0x6F7a338F2aA472838dEFD3283eB360d4Dff5D203',
             },
             'features': {
@@ -2504,7 +2504,7 @@ export default class woofipro extends Exchange {
             ],
         };
         const withdrawRequest: Dict = {
-            'brokerId': this.safeString (this.options, 'keyBrokerId', 'woofi_pro'),
+            // 'brokerId': this.safeString (this.options, 'keyBrokerId', 'woofi_pro'),
             'chainId': this.parseToInt (chainId),
             'receiver': address,
             'token': code,
@@ -2803,18 +2803,18 @@ export default class woofipro extends Exchange {
         } else {
             this.checkRequiredCredentials ();
             if ((method === 'POST' || method === 'PUT') && (path === 'algo/order' || path === 'order' || path === 'batch-order')) {
-                const isSandboxMode = this.safeBool (this.options, 'sandboxMode', false);
-                if (!isSandboxMode) {
-                    const brokerId = this.safeString (this.options, 'brokerId', 'CCXT');
-                    if (path === 'batch-order') {
-                        const ordersList = this.safeList (params, 'orders', []);
-                        for (let i = 0; i < ordersList.length; i++) {
-                            params['orders'][i]['order_tag'] = brokerId;
-                        }
-                    } else {
-                        params['order_tag'] = brokerId;
-                    }
-                }
+                // const isSandboxMode = this.safeBool (this.options, 'sandboxMode', false);
+                // if (!isSandboxMode) {
+                //     const brokerId = this.safeString (this.options, 'brokerId', 'CCXT');
+                //     if (path === 'batch-order') {
+                //         const ordersList = this.safeList (params, 'orders', []);
+                //         for (let i = 0; i < ordersList.length; i++) {
+                //             params['orders'][i]['order_tag'] = brokerId;
+                //         }
+                //     } else {
+                //         params['order_tag'] = brokerId;
+                //     }
+                // }
                 params = this.keysort (params);
             }
             let auth = '';

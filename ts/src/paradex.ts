@@ -302,7 +302,7 @@ export default class paradex extends Exchange {
             },
             'options': {
                 'paradexAccount': undefined, // add {"privateKey": A, "publicKey": B, "address": C}
-                'broker': 'CCXT',
+                // 'broker': 'CCXT',
             },
             'features': {
                 'spot': undefined,
@@ -2519,7 +2519,7 @@ export default class paradex extends Exchange {
         } else if (api === 'private') {
             headers = {
                 'Accept': 'application/json',
-                'PARADEX-PARTNER': this.safeString (this.options, 'broker', 'CCXT'),
+                // 'PARADEX-PARTNER': this.safeString (this.options, 'broker', 'CCXT'),
             };
             // TODO: optimize
             if (path === 'auth') {

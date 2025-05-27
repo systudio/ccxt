@@ -323,7 +323,7 @@ export default class vertex extends Exchange {
                 'defaultType': 'swap',
                 'sandboxMode': false,
                 'timeDifference': 0, // the difference between system clock and exchange server clock
-                'brokerId': 5930043274845996,
+                // 'brokerId': 5930043274845996,
             },
             'features': {
                 'default': {
@@ -1862,7 +1862,7 @@ export default class vertex extends Exchange {
                     'nonce': order['nonce'],
                 },
                 'signature': this.buildCreateOrderSig (order, chainId, verifyingContractAddress),
-                'id': this.safeInteger (this.options, 'brokerId', 5930043274845996),
+                // 'id': this.safeInteger (this.options, 'brokerId', 5930043274845996),
             },
         };
         params = this.omit (params, [ 'timeInForce', 'reduceOnly', 'postOnly', 'triggerPrice', 'stopPrice', 'stopLossPrice', 'takeProfitPrice' ]);
@@ -1980,7 +1980,7 @@ export default class vertex extends Exchange {
                         'nonce': order['nonce'],
                     },
                     'signature': this.buildCreateOrderSig (order, chainId, verifyingContractAddressOrder),
-                    'id': this.safeInteger (this.options, 'brokerId', 5930043274845996),
+                    // 'id': this.safeInteger (this.options, 'brokerId', 5930043274845996),
                 },
             },
         };

@@ -224,7 +224,7 @@ export default class apex extends Exchange {
             'options': {
                 'defaultType': 'swap',
                 'defaultSlippage': 0.05,
-                'brokerId': '6956',
+                // 'brokerId': '6956',
             },
             'features': {
                 'default': {
@@ -1386,7 +1386,7 @@ export default class apex extends Exchange {
             'expiration': Math.floor (timeNow / 1000 + 30 * 24 * 60 * 60),
             'timeInForce': timeInForce,
             'clientId': clientOrderId,
-            'brokerId': this.safeString (this.options, 'brokerId', '6956'),
+            // 'brokerId': this.safeString (this.options, 'brokerId', '6956'),
         };
         request['signature'] = signature;
         const response = await this.privatePostV3Order (this.extend (request, params));

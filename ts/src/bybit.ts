@@ -1039,7 +1039,7 @@ export default class bybit extends Exchange {
                 'adjustForTimeDifference': false, // controls the adjustment logic upon instantiation
                 'loadAllOptions': false, // load all possible option markets, adds signficant load time
                 'loadExpiredOptions': false, // loads expired options, to load all possible expired options set loadAllOptions to true
-                'brokerId': 'CCXT',
+                // 'brokerId': 'CCXT',
                 'accountsByType': {
                     'spot': 'SPOT',
                     'margin': 'SPOT',
@@ -9292,12 +9292,12 @@ export default class bybit extends Exchange {
                 }
             }
         }
-        if (method === 'POST') {
-            const brokerId = this.safeString (this.options, 'brokerId');
-            if (brokerId !== undefined) {
-                headers['Referer'] = brokerId;
-            }
-        }
+        // if (method === 'POST') {
+        //     const brokerId = this.safeString (this.options, 'brokerId');
+        //     if (brokerId !== undefined) {
+        //         headers['Referer'] = brokerId;
+        //     }
+        // }
         return { 'url': url, 'method': method, 'body': body, 'headers': headers };
     }
 

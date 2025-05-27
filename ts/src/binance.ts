@@ -5164,17 +5164,17 @@ export default class binance extends Exchange {
                 throw new InvalidOrder (this.id + ' ' + type + ' is not a valid order type for the ' + symbol + ' market');
             }
         }
-        if (clientOrderId === undefined) {
-            const broker = this.safeDict (this.options, 'broker');
-            if (broker !== undefined) {
-                const brokerId = this.safeString (broker, 'spot');
-                if (brokerId !== undefined) {
-                    request['newClientOrderId'] = brokerId + this.uuid22 ();
-                }
-            }
-        } else {
-            request['newClientOrderId'] = clientOrderId;
-        }
+        // if (clientOrderId === undefined) {
+        //     const broker = this.safeDict (this.options, 'broker');
+        //     if (broker !== undefined) {
+        //         const brokerId = this.safeString (broker, 'spot');
+        //         if (brokerId !== undefined) {
+        //             request['newClientOrderId'] = brokerId + this.uuid22 ();
+        //         }
+        //     }
+        // } else {
+        request['newClientOrderId'] = clientOrderId;
+        // }
         request['newOrderRespType'] = this.safeValue (this.options['newOrderRespType'], type, 'RESULT'); // 'ACK' for order id, 'RESULT' for full order or 'FULL' for order with fills
         let timeInForceIsRequired = false;
         let priceIsRequired = false;
@@ -6333,18 +6333,18 @@ export default class binance extends Exchange {
             }
         }
         const clientOrderIdRequest = isPortfolioMarginConditional ? 'newClientStrategyId' : 'newClientOrderId';
-        if (clientOrderId === undefined) {
-            const broker = this.safeDict (this.options, 'broker', {});
-            const defaultId = (market['contract']) ? 'x-xcKtGhcu' : 'x-TKT5PX2F';
-            let idMarketType = 'spot';
-            if (market['contract']) {
-                idMarketType = (market['swap'] && market['linear']) ? 'swap' : 'inverse';
-            }
-            const brokerId = this.safeString (broker, idMarketType, defaultId);
-            request[clientOrderIdRequest] = brokerId + this.uuid22 ();
-        } else {
-            request[clientOrderIdRequest] = clientOrderId;
-        }
+        // if (clientOrderId === undefined) {
+        //     const broker = this.safeDict (this.options, 'broker', {});
+        //     const defaultId = (market['contract']) ? 'x-xcKtGhcu' : 'x-TKT5PX2F';
+        //     let idMarketType = 'spot';
+        //     if (market['contract']) {
+        //         idMarketType = (market['swap'] && market['linear']) ? 'swap' : 'inverse';
+        //     }
+        //     const brokerId = this.safeString (broker, idMarketType, defaultId);
+        //     request[clientOrderIdRequest] = brokerId + this.uuid22 ();
+        // } else {
+        request[clientOrderIdRequest] = clientOrderId;
+        // }
         let postOnly = undefined;
         if (!isPortfolioMargin) {
             postOnly = this.isPostOnly (isMarketOrder, initialUppercaseType === 'LIMIT_MAKER', params);
@@ -11759,18 +11759,18 @@ export default class binance extends Exchange {
             }
         } else if ((api === 'private') || (api === 'eapiPrivate') || (api === 'sapi' && path !== 'system/status') || (api === 'sapiV2') || (api === 'sapiV3') || (api === 'sapiV4') || (api === 'dapiPrivate') || (api === 'dapiPrivateV2') || (api === 'fapiPrivate') || (api === 'fapiPrivateV2') || (api === 'fapiPrivateV3') || (api === 'papi' && path !== 'ping')) {
             this.checkRequiredCredentials ();
-            if (method === 'POST' && ((path === 'order') || (path === 'sor/order'))) {
-                // inject in implicit API calls
-                const newClientOrderId = this.safeString (params, 'newClientOrderId');
-                if (newClientOrderId === undefined) {
-                    const isSpotOrMargin = (api.indexOf ('sapi') > -1 || api === 'private');
-                    const marketType = isSpotOrMargin ? 'spot' : 'future';
-                    const defaultId = (!isSpotOrMargin) ? 'x-xcKtGhcu' : 'x-TKT5PX2F';
-                    const broker = this.safeDict (this.options, 'broker', {});
-                    const brokerId = this.safeString (broker, marketType, defaultId);
-                    params['newClientOrderId'] = brokerId + this.uuid22 ();
-                }
-            }
+            // if (method === 'POST' && ((path === 'order') || (path === 'sor/order'))) {
+            //     // inject in implicit API calls
+            //     const newClientOrderId = this.safeString (params, 'newClientOrderId');
+            //     if (newClientOrderId === undefined) {
+            //         const isSpotOrMargin = (api.indexOf ('sapi') > -1 || api === 'private');
+            //         const marketType = isSpotOrMargin ? 'spot' : 'future';
+            //         const defaultId = (!isSpotOrMargin) ? 'x-xcKtGhcu' : 'x-TKT5PX2F';
+            //         const broker = this.safeDict (this.options, 'broker', {});
+            //         const brokerId = this.safeString (broker, marketType, defaultId);
+            //         params['newClientOrderId'] = brokerId + this.uuid22 ();
+            //     }
+            // }
             let query = undefined;
             // handle batchOrders
             if ((path === 'batchOrders') && ((method === 'POST') || (method === 'PUT'))) {
@@ -11781,14 +11781,14 @@ export default class binance extends Exchange {
                     checkedBatchOrders = [];
                     for (let i = 0; i < batchOrders.length; i++) {
                         const batchOrder = batchOrders[i];
-                        let newClientOrderId = this.safeString (batchOrder, 'newClientOrderId');
-                        if (newClientOrderId === undefined) {
-                            const defaultId = 'x-xcKtGhcu'; // batchOrders can not be spot or margin
-                            const broker = this.safeDict (this.options, 'broker', {});
-                            const brokerId = this.safeString (broker, 'future', defaultId);
-                            newClientOrderId = brokerId + this.uuid22 ();
-                            batchOrder['newClientOrderId'] = newClientOrderId;
-                        }
+                        // let newClientOrderId = this.safeString (batchOrder, 'newClientOrderId');
+                        // if (newClientOrderId === undefined) {
+                        //     const defaultId = 'x-xcKtGhcu'; // batchOrders can not be spot or margin
+                        //     const broker = this.safeDict (this.options, 'broker', {});
+                        //     const brokerId = this.safeString (broker, 'future', defaultId);
+                        //     newClientOrderId = brokerId + this.uuid22 ();
+                        //     batchOrder['newClientOrderId'] = newClientOrderId;
+                        // }
                         checkedBatchOrders.push (batchOrder);
                     }
                 }

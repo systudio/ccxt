@@ -1166,9 +1166,9 @@ export default class htx extends Exchange {
                 'fetchOrdersByStatesMethod': 'spot_private_get_v1_order_orders', // 'spot_private_get_v1_order_history' // https://github.com/ccxt/ccxt/pull/5392
                 'createMarketBuyOrderRequiresPrice': true,
                 'language': 'en-US',
-                'broker': {
-                    'id': 'AA03022abc',
-                },
+                // 'broker': {
+                //     'id': 'AA03022abc',
+                // },
                 'accountsByType': {
                     'spot': 'pro',
                     'funding': 'pro',
@@ -5324,13 +5324,13 @@ export default class htx extends Exchange {
         }
         request['type'] = side + '-' + orderType;
         const clientOrderId = this.safeString2 (params, 'clientOrderId', 'client-order-id'); // must be 64 chars max and unique within 24 hours
-        if (clientOrderId === undefined) {
-            const broker = this.safeValue (this.options, 'broker', {});
-            const brokerId = this.safeString (broker, 'id');
-            request['client-order-id'] = brokerId + this.uuid ();
-        } else {
-            request['client-order-id'] = clientOrderId;
-        }
+        // if (clientOrderId === undefined) {
+        //     const broker = this.safeValue (this.options, 'broker', {});
+        //     const brokerId = this.safeString (broker, 'id');
+        //     request['client-order-id'] = brokerId + this.uuid ();
+        // } else {
+        request['client-order-id'] = clientOrderId;
+        // }
         if (marginMode === 'cross') {
             request['source'] = 'super-margin-api';
         } else if (marginMode === 'isolated') {
@@ -5472,9 +5472,9 @@ export default class htx extends Exchange {
                 request['offset'] = 'open';
             }
         }
-        const broker = this.safeValue (this.options, 'broker', {});
-        const brokerId = this.safeString (broker, 'id');
-        request['channel_code'] = brokerId;
+        // const broker = this.safeValue (this.options, 'broker', {});
+        // const brokerId = this.safeString (broker, 'id');
+        // request['channel_code'] = brokerId;
         params = this.omit (params, [ 'reduceOnly', 'triggerPrice', 'stopPrice', 'stopLossPrice', 'takeProfitPrice', 'triggerType', 'leverRate', 'timeInForce', 'leverage', 'trailingPercent', 'trailingTriggerPrice', 'hedged' ]);
         return this.extend (request, params);
     }
@@ -7359,23 +7359,23 @@ export default class htx extends Exchange {
                 }
             } else if (access === 'private') {
                 this.checkRequiredCredentials ();
-                if (method === 'POST') {
-                    const options = this.safeValue (this.options, 'broker', {});
-                    const id = this.safeString (options, 'id', 'AA03022abc');
-                    if (path.indexOf ('cancel') === -1 && path.endsWith ('order')) {
-                        // swap order placement
-                        const channelCode = this.safeString (params, 'channel_code');
-                        if (channelCode === undefined) {
-                            params['channel_code'] = id;
-                        }
-                    } else if (path.endsWith ('orders/place')) {
-                        // spot order placement
-                        const clientOrderId = this.safeString (params, 'client-order-id');
-                        if (clientOrderId === undefined) {
-                            params['client-order-id'] = id + this.uuid ();
-                        }
-                    }
-                }
+                // if (method === 'POST') {
+                //     const options = this.safeValue (this.options, 'broker', {});
+                //     const id = this.safeString (options, 'id', 'AA03022abc');
+                //     if (path.indexOf ('cancel') === -1 && path.endsWith ('order')) {
+                //         // swap order placement
+                //         const channelCode = this.safeString (params, 'channel_code');
+                //         if (channelCode === undefined) {
+                //             params['channel_code'] = id;
+                //         }
+                //     } else if (path.endsWith ('orders/place')) {
+                //         // spot order placement
+                //         const clientOrderId = this.safeString (params, 'client-order-id');
+                //         if (clientorderid === undefined) {
+                //             params['client-order-id'] = id + this.uuid ();
+                //         }
+                //     }
+                // }
                 const timestamp = this.ymdhms (this.nonce (), 'T');
                 let request: Dict = {
                     'SignatureMethod': 'HmacSHA256',

@@ -349,7 +349,7 @@ export default class coinbase extends Exchange {
             },
             'options': {
                 'usePrivate': false,
-                'brokerId': 'ccxt',
+                // 'brokerId': 'ccxt',
                 'stablePairs': [ 'BUSD-USD', 'CBETH-ETH', 'DAI-USD', 'GUSD-USD', 'GYEN-USD', 'PAX-USD', 'PAX-USDT', 'USDC-EUR', 'USDC-GBP', 'USDT-EUR', 'USDT-GBP', 'USDT-USD', 'USDT-USDC', 'WBTC-BTC' ],
                 'fetchCurrencies': {
                     'expires': 5000,
@@ -2952,9 +2952,9 @@ export default class coinbase extends Exchange {
     async createOrder (symbol: string, type: OrderType, side: OrderSide, amount: number, price: Num = undefined, params = {}) {
         await this.loadMarkets ();
         const market = this.market (symbol);
-        const id = this.safeString (this.options, 'brokerId', 'ccxt');
+        // const id = this.safeString (this.options, 'brokerId', 'ccxt');
         let request: Dict = {
-            'client_order_id': id + '-' + this.uuid (),
+            // 'client_order_id': id + '-' + this.uuid (),
             'product_id': market['id'],
             'side': side.toUpperCase (),
         };

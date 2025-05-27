@@ -2021,14 +2021,14 @@ export default class bitmex extends Exchange {
                 throw new InvalidOrder (this.id + ' createOrder() does not support reduceOnly for ' + market['type'] + ' orders, reduceOnly orders are supported for swap and future markets only');
             }
         }
-        const brokerId = this.safeString (this.options, 'brokerId', 'CCXT');
+        // const brokerId = this.safeString (this.options, 'brokerId', 'CCXT');
         const qty = this.parseToInt (this.amountToPrecision (symbol, amount));
         const request: Dict = {
             'symbol': market['id'],
             'side': this.capitalize (side),
             'orderQty': qty, // lot size multiplied by the number of contracts
             'ordType': orderType,
-            'text': brokerId,
+            // 'text': brokerId,
         };
         // support for unified trigger format
         const triggerPrice = this.safeNumberN (params, [ 'triggerPrice', 'stopPx', 'stopPrice' ]);
@@ -2135,8 +2135,8 @@ export default class bitmex extends Exchange {
         if (price !== undefined) {
             request['price'] = price;
         }
-        const brokerId = this.safeString (this.options, 'brokerId', 'CCXT');
-        request['text'] = brokerId;
+        // const brokerId = this.safeString (this.options, 'brokerId', 'CCXT');
+        // request['text'] = brokerId;
         const response = await this.privatePutOrder (this.extend (request, params));
         return this.parseOrder (response);
     }

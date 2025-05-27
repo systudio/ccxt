@@ -402,7 +402,7 @@ export default class blofin extends Exchange {
             },
             'precisionMode': TICK_SIZE,
             'options': {
-                'brokerId': 'ec6dd3a7dd982d0b',
+                // 'brokerId': 'ec6dd3a7dd982d0b',
                 'accountsByType': {
                     'swap': 'futures',
                     'funding': 'funding',
@@ -1173,7 +1173,7 @@ export default class blofin extends Exchange {
             'side': side,
             'orderType': type,
             'size': this.amountToPrecision (symbol, amount),
-            'brokerId': this.safeString (this.options, 'brokerId', 'ec6dd3a7dd982d0b'),
+            // 'brokerId': this.safeString (this.options, 'brokerId', 'ec6dd3a7dd982d0b'),
         };
         let marginMode = undefined;
         [ marginMode, params ] = this.handleMarginModeAndParams ('createOrder', params, 'cross');
@@ -1436,7 +1436,7 @@ export default class blofin extends Exchange {
             'instId': market['id'],
             'side': side,
             'positionSide': positionSide,
-            'brokerId': this.safeString (this.options, 'brokerId', 'ec6dd3a7dd982d0b'),
+            // 'brokerId': this.safeString (this.options, 'brokerId', 'ec6dd3a7dd982d0b'),
         };
         if (amount !== undefined) {
             request['size'] = this.amountToPrecision (symbol, amount);

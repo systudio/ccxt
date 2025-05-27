@@ -1368,7 +1368,7 @@ export default class bitget extends Exchange {
                 'defaultType': 'spot', // 'spot', 'swap', 'future'
                 'defaultSubType': 'linear', // 'linear', 'inverse'
                 'createMarketBuyOrderRequiresPrice': true,
-                'broker': 'p4sve',
+                // 'broker': '',
                 'withdraw': {
                     'fillResponseFromRequest': true,
                 },
@@ -9098,13 +9098,13 @@ export default class bitget extends Exchange {
                 }
             }
             const signature = this.hmac (this.encode (auth), this.encode (this.secret), sha256, 'base64');
-            const broker = this.safeString (this.options, 'broker');
+            // const broker = this.safeString (this.options, 'broker');
             headers = {
                 'ACCESS-KEY': this.apiKey,
                 'ACCESS-SIGN': signature,
                 'ACCESS-TIMESTAMP': timestamp,
                 'ACCESS-PASSPHRASE': this.password,
-                'X-CHANNEL-API-CODE': broker,
+                // 'X-CHANNEL-API-CODE': broker,
             };
             if (method === 'POST') {
                 headers['Content-Type'] = 'application/json';

@@ -1740,17 +1740,17 @@ export default class tokocrypto extends Exchange {
         } else if (side === 'sell') {
             request['side'] = 1;
         }
-        if (clientOrderId === undefined) {
-            const broker = this.safeValue (this.options, 'broker');
-            if (broker !== undefined) {
-                const brokerId = this.safeString (broker, 'marketType');
-                if (brokerId !== undefined) {
-                    request['clientId'] = brokerId + this.uuid22 ();
-                }
-            }
-        } else {
-            request['clientId'] = clientOrderId;
-        }
+        // if (clientOrderId === undefined) {
+        //     const broker = this.safeValue (this.options, 'broker');
+        //     if (broker !== undefined) {
+        //         const brokerId = this.safeString (broker, 'marketType');
+        //         if (brokerId !== undefined) {
+        //             request['clientId'] = brokerId + this.uuid22 ();
+        //         }
+        //     }
+        // } else {
+        request['clientId'] = clientOrderId;
+        // }
         // additional required fields depending on the order type
         let priceIsRequired = false;
         let triggerPriceIsRequired = false;

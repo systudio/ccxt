@@ -304,7 +304,7 @@ export default class whitebit extends Exchange {
                     'BEP20': 'BSC',
                 },
                 'defaultType': 'spot',
-                'brokerId': 'ccxt',
+                // 'brokerId': 'ccxt',
             },
             'features': {
                 'default': {
@@ -1491,15 +1491,15 @@ export default class whitebit extends Exchange {
             request['amount'] = this.amountToPrecision (symbol, amount);
         }
         const clientOrderId = this.safeString2 (params, 'clOrdId', 'clientOrderId');
-        if (clientOrderId === undefined) {
-            const brokerId = this.safeString (this.options, 'brokerId');
-            if (brokerId !== undefined) {
-                request['clientOrderId'] = brokerId + this.uuid16 ();
-            }
-        } else {
-            request['clientOrderId'] = clientOrderId;
-            params = this.omit (params, [ 'clientOrderId' ]);
-        }
+        // if (clientOrderId === undefined) {
+        //     const brokerId = this.safeString (this.options, 'brokerId');
+        //     if (brokerId !== undefined) {
+        //         request['clientOrderId'] = brokerId + this.uuid16 ();
+        //     }
+        // } else {
+        request['clientOrderId'] = clientOrderId;
+        params = this.omit (params, [ 'clientOrderId' ]);
+        // }
         const marketType = this.safeString (market, 'type');
         const isLimitOrder = type === 'limit';
         const isMarketOrder = type === 'market';

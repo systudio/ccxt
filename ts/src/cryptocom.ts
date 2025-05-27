@@ -347,7 +347,7 @@ export default class cryptocom extends Exchange {
                     'ERC20': 'ETH',
                     'TRC20': 'TRON',
                 },
-                'broker': 'CCXT',
+                // 'broker': 'CCXT',
             },
             'features': {
                 'default': {
@@ -1290,8 +1290,8 @@ export default class cryptocom extends Exchange {
         if ((uppercaseType === 'LIMIT') || (uppercaseType === 'STOP_LIMIT') || (uppercaseType === 'TAKE_PROFIT_LIMIT')) {
             request['price'] = this.priceToPrecision (symbol, price);
         }
-        const broker = this.safeString (this.options, 'broker', 'CCXT');
-        request['broker_id'] = broker;
+        // const broker = this.safeString (this.options, 'broker', 'CCXT');
+        // request['broker_id'] = broker;
         let marketType = undefined;
         let marginMode = undefined;
         [ marketType, params ] = this.handleMarketTypeAndParams ('createOrder', market, params);
@@ -1509,8 +1509,8 @@ export default class cryptocom extends Exchange {
         if ((uppercaseType === 'LIMIT') || (uppercaseType === 'STOP_LIMIT') || (uppercaseType === 'TAKE_PROFIT_LIMIT')) {
             request['price'] = this.priceToPrecision (symbol, price);
         }
-        const broker = this.safeString (this.options, 'broker', 'CCXT');
-        request['broker_id'] = broker;
+        // const broker = this.safeString (this.options, 'broker', 'CCXT');
+        // request['broker_id'] = broker;
         const timeInForce = this.safeStringUpper2 (params, 'timeInForce', 'time_in_force');
         if (timeInForce !== undefined) {
             if (timeInForce === 'GTC') {

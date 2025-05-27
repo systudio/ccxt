@@ -523,7 +523,7 @@ export default class bingx extends Exchange {
                     'SFUTURES': 'future',
                 },
                 'recvWindow': 5 * 1000, // 5 sec
-                'broker': 'CCXT',
+                // 'broker': 'CCXT',
                 'defaultNetworks': {
                     'ETH': 'ETH',
                     'USDT': 'ERC20',
@@ -6536,7 +6536,7 @@ export default class bingx extends Exchange {
             const signature = this.hmac (this.encode (encodeRequest), this.encode (this.secret), sha256);
             headers = {
                 'X-BX-APIKEY': this.apiKey,
-                'X-SOURCE-KEY': this.safeString (this.options, 'broker', 'CCXT'),
+                // 'X-SOURCE-KEY': this.safeString (this.options, 'broker', 'CCXT'),
             };
             if (isJsonContentType) {
                 headers['Content-Type'] = 'application/json';
