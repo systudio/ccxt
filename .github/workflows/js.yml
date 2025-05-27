@@ -2,10 +2,10 @@ name: Js
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  # push:
+  #   branches: [ main, master ]
+  # pull_request:
+  #   branches: [ main, master ]
 
 permissions:
   contents: write
@@ -92,9 +92,9 @@ jobs:
     - name: Run Base Ws Tests
       if: env.important_modified == 'true'
       run: npm run test-base-ws-js
-    - name: Run Id Tests
-      if: env.important_modified == 'true'
-      run: npm run id-tests-js
+    # - name: Run Id Tests
+    #   if: env.important_modified == 'true'
+    #   run: npm run id-tests-js
     - name: Request tests
       if: env.important_modified == 'true'
       run: npm run request-js

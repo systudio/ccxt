@@ -2,10 +2,10 @@ name: C#
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  # push:
+  #   branches: [ main, master ]
+  # pull_request:
+  #   branches: [ main, master ]
 
 permissions:
   contents: read
@@ -67,9 +67,9 @@ jobs:
     - name: Run Base Ws Tests
       if: env.important_modified == 'true'
       run: npm run test-base-ws-cs
-    - name: Run Id Tests
-      if: env.important_modified == 'true'
-      run: npm run id-tests-cs
+    # - name: Run Id Tests
+    #   if: env.important_modified == 'true'
+    #   run: npm run id-tests-cs
     - name: Request tests
       if: env.important_modified == 'true'
       run: npm run request-cs

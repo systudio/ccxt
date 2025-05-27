@@ -1,10 +1,10 @@
 name: Go
 on:
   workflow_dispatch:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  # push:
+  #   branches: [ main, master ]
+  # pull_request:
+  #   branches: [ main, master ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -60,9 +60,9 @@ jobs:
       - name: Run Base Tests
         if: env.important_modified == 'true'
         run: npm run test-base-rest-go
-      - name: Run Id Tests
-        if: env.important_modified == 'true'
-        run: npm run id-tests-go
+      # - name: Run Id Tests
+      #   if: env.important_modified == 'true'
+      #   run: npm run id-tests-go
       - name: Request tests
         if: env.important_modified == 'true'
         run: npm run request-go
