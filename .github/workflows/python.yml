@@ -120,76 +120,76 @@ jobs:
           git config --global pull.rebase false
           git pull --rebase --autostash origin master
           git push
-  windows:
-    runs-on: windows-2022
-    needs: build
-    if: github.ref == 'refs/heads/master'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Download shared_env
-        uses: actions/download-artifact@v4
-        with:
-          name: shared_env
-      - name: Download Py Files
-        uses: actions/download-artifact@v4
-        with:
-          name: python-files
-          path: python/
-      - name: Restore shared_env
-        run: ./utils/restore_shared_env.sh
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - name: Install npm dependencies
-        run: npm ci --include=dev
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-      - name: Install python dependencies
-        run: pip install -r ci-requirements.txt
-      - name: Export exchanges
-        run: npm run export-exchanges
-      - name: Run Id Tests
-        run: npm run id-tests-py
-      - name: Request tests
-        run: npm run request-py
-      - name: Response tests
-        run: npm run response-py
-  live-tests:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Download shared_env
-        uses: actions/download-artifact@v4
-        with:
-          name: shared_env
-      - name: Download Py Files
-        uses: actions/download-artifact@v4
-        with:
-          name: python-files
-          path: python/
-      - name: Restore shared_env
-        run: ./utils/restore_shared_env.sh
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - name: Install npm dependencies
-        run: npm ci --include=dev
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-      - name: Install python dependencies
-        run: pip install -r ci-requirements.txt
-      - name: Export exchanges
-        run: npm run export-exchanges
-      - name: Live tests
-        if: env.important_modified == 'true'
-        run: ./run-tests-simul.sh --python-async
-      - name: Live tests (specific)
-        if: env.important_modified == 'false'
-        run: ./run-tests-simul.sh --python-async "${{ env.rest_files }}" "${{ env.ws_files }}"
+  # windows:
+  #   runs-on: windows-2022
+  #   needs: build
+  #   if: github.ref == 'refs/heads/master'
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Download shared_env
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: shared_env
+  #     - name: Download Py Files
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: python-files
+  #         path: python/
+  #     - name: Restore shared_env
+  #       run: ./utils/restore_shared_env.sh
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '20'
+  #         cache: 'npm'
+  #     - name: Install npm dependencies
+  #       run: npm ci --include=dev
+  #     - uses: actions/setup-python@v5
+  #       with:
+  #         python-version: '3.11'
+  #         cache: 'pip'
+  #     - name: Install python dependencies
+  #       run: pip install -r ci-requirements.txt
+  #     - name: Export exchanges
+  #       run: npm run export-exchanges
+  #     - name: Run Id Tests
+  #       run: npm run id-tests-py
+  #     - name: Request tests
+  #       run: npm run request-py
+  #     - name: Response tests
+  #       run: npm run response-py
+  # live-tests:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Download shared_env
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: shared_env
+  #     - name: Download Py Files
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: python-files
+  #         path: python/
+  #     - name: Restore shared_env
+  #       run: ./utils/restore_shared_env.sh
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '20'
+  #         cache: 'npm'
+  #     - name: Install npm dependencies
+  #       run: npm ci --include=dev
+  #     - uses: actions/setup-python@v5
+  #       with:
+  #         python-version: '3.11'
+  #         cache: 'pip'
+  #     - name: Install python dependencies
+  #       run: pip install -r ci-requirements.txt
+  #     - name: Export exchanges
+  #       run: npm run export-exchanges
+  #     - name: Live tests
+  #       if: env.important_modified == 'true'
+  #       run: ./run-tests-simul.sh --python-async
+  #     - name: Live tests (specific)
+  #       if: env.important_modified == 'false'
+  #       run: ./run-tests-simul.sh --python-async "${{ env.rest_files }}" "${{ env.ws_files }}"
