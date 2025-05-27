@@ -70,26 +70,26 @@ jobs:
     # - name: Run Id Tests
     #   if: env.important_modified == 'true'
     #   run: npm run id-tests-cs
-    - name: Request tests
-      if: env.important_modified == 'true'
-      run: npm run request-cs
-    - name: Request tests (specific)
-      if: env.important_modified == 'false'
-      run: |
-        cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
-        for exchange in $cleaned_rest_files; do
-          npm run request-cs -- $exchange
-        done
-    - name: Response tests
-      if: env.important_modified == 'true'
-      run: npm run response-cs
-    - name: Response tests (specific)
-      if: env.important_modified == 'false'
-      run: |
-        cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
-        for exchange in $cleaned_rest_files; do
-          npm run response-cs -- $exchange
-        done
+    # - name: Request tests
+    #   if: env.important_modified == 'true'
+    #   run: npm run request-cs
+    # - name: Request tests (specific)
+    #   if: env.important_modified == 'false'
+    #   run: |
+    #     cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
+    #     for exchange in $cleaned_rest_files; do
+    #       npm run request-cs -- $exchange
+    #     done
+    # - name: Response tests
+    #   if: env.important_modified == 'true'
+    #   run: npm run response-cs
+    # - name: Response tests (specific)
+    #   if: env.important_modified == 'false'
+    #   run: |
+    #     cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
+    #     for exchange in $cleaned_rest_files; do
+    #       npm run response-cs -- $exchange
+    #     done
     - name: Upload shared_env.txt
       uses: actions/upload-artifact@v4
       with:

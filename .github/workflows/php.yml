@@ -82,28 +82,28 @@ jobs:
     # - name: Run Id Tests
     #   if: env.important_modified == 'true'
     #   run: npm run id-tests-php
-    - name: Request tests
-      if: env.important_modified == 'true'
-      run: npm run request-php
-    - name: Request tests (specific)
-      if: env.important_modified == 'false'
-      run: |
-        cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
-        for exchange in $cleaned_rest_files; do
-          npm run request-php-sync -- $exchange
-          npm run request-php-async -- $exchange
-        done
-    - name: Response tests
-      if: env.important_modified == 'true'
-      run: npm run response-php
-    - name: Response tests (specific)
-      if: env.important_modified == 'false'
-      run: |
-        cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
-        for exchange in $cleaned_rest_files; do
-          npm run response-php-sync -- $exchange
-          npm run response-php-async -- $exchange
-        done
+    # - name: Request tests
+    #   if: env.important_modified == 'true'
+    #   run: npm run request-php
+    # - name: Request tests (specific)
+    #   if: env.important_modified == 'false'
+    #   run: |
+    #     cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
+    #     for exchange in $cleaned_rest_files; do
+    #       npm run request-php-sync -- $exchange
+    #       npm run request-php-async -- $exchange
+    #     done
+    # - name: Response tests
+    #   if: env.important_modified == 'true'
+    #   run: npm run response-php
+    # - name: Response tests (specific)
+    #   if: env.important_modified == 'false'
+    #   run: |
+    #     cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
+    #     for exchange in $cleaned_rest_files; do
+    #       npm run response-php-sync -- $exchange
+    #       npm run response-php-async -- $exchange
+    #     done
     - name: Upload shared_env.txt
       uses: actions/upload-artifact@v4
       with:

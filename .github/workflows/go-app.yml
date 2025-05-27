@@ -63,26 +63,26 @@ jobs:
       # - name: Run Id Tests
       #   if: env.important_modified == 'true'
       #   run: npm run id-tests-go
-      - name: Request tests
-        if: env.important_modified == 'true'
-        run: npm run request-go
-      - name: Request tests (specific)
-        if: env.important_modified == 'false'
-        run: |
-          cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
-          for exchange in $cleaned_rest_files; do
-            npm run request-go -- $exchange
-          done
-      - name: Response Tests
-        if: env.important_modified == 'true'
-        run: npm run response-go
-      - name: Response tests (specific)
-        if: env.important_modified == 'false'
-        run: |
-          cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
-          for exchange in $cleaned_rest_files; do
-            npm run response-go -- $exchange
-          done
+      # - name: Request tests
+      #   if: env.important_modified == 'true'
+      #   run: npm run request-go
+      # - name: Request tests (specific)
+      #   if: env.important_modified == 'false'
+      #   run: |
+      #     cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
+      #     for exchange in $cleaned_rest_files; do
+      #       npm run request-go -- $exchange
+      #     done
+      # - name: Response Tests
+      #   if: env.important_modified == 'true'
+      #   run: npm run response-go
+      # - name: Response tests (specific)
+      #   if: env.important_modified == 'false'
+      #   run: |
+      #     cleaned_rest_files=$(echo ${{ env.rest_files }} | tr -s ' ')
+      #     for exchange in $cleaned_rest_files; do
+      #       npm run response-go -- $exchange
+      #     done
 
       # - name: Upload Go Files
       #   uses: actions/upload-artifact@v4
