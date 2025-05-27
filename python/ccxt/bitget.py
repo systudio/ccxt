@@ -1387,7 +1387,7 @@ class bitget(Exchange, ImplicitAPI):
                 'defaultType': 'spot',  # 'spot', 'swap', 'future'
                 'defaultSubType': 'linear',  # 'linear', 'inverse'
                 'createMarketBuyOrderRequiresPrice': True,
-                'broker': 'p4sve',
+                # 'broker': '',
                 'withdraw': {
                     'fillResponseFromRequest': True,
                 },
@@ -8694,13 +8694,13 @@ class bitget(Exchange, ImplicitAPI):
                     url += queryInner
                     auth += queryInner
             signature = self.hmac(self.encode(auth), self.encode(self.secret), hashlib.sha256, 'base64')
-            broker = self.safe_string(self.options, 'broker')
+            # broker = self.safe_string(self.options, 'broker')
             headers = {
                 'ACCESS-KEY': self.apiKey,
                 'ACCESS-SIGN': signature,
                 'ACCESS-TIMESTAMP': timestamp,
                 'ACCESS-PASSPHRASE': self.password,
-                'X-CHANNEL-API-CODE': broker,
+                # 'X-CHANNEL-API-CODE': broker,
             }
             if method == 'POST':
                 headers['Content-Type'] = 'application/json'

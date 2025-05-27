@@ -1238,7 +1238,7 @@ class okx(Exchange, ImplicitAPI):
                     'FUTURES': 'FUTURES',
                     'OPTION': 'OPTION',
                 },
-                'brokerId': 'e847386590ce4dBC',
+                # 'brokerId': 'e847386590ce4dBC',
             },
             'features': {
                 'default': {
@@ -3036,14 +3036,16 @@ class okx(Exchange, ImplicitAPI):
                     slOrdPxReq = self.price_to_precision(symbol, slOrdPx)
                 request['slOrdPx'] = slOrdPxReq
                 request['slTriggerPxType'] = slTriggerPxType
-        if clientOrderId is None:
-            brokerId = self.safe_string(self.options, 'brokerId')
-            if brokerId is not None:
-                request['clOrdId'] = brokerId + self.uuid16()
-                request['tag'] = brokerId
-        else:
-            request['clOrdId'] = clientOrderId
-            params = self.omit(params, ['clOrdId', 'clientOrderId'])
+        # if clientOrderId is None:
+        #     brokerId = self.safe_string(self.options, 'brokerId')
+        #     if brokerId is not None:
+        #         request['clOrdId'] = brokerId + self.uuid16()
+        #         request['tag'] = brokerId
+        #     }
+        # else:
+        request['clOrdId'] = clientOrderId
+        params = self.omit(params, ['clOrdId', 'clientOrderId'])
+        # }
         return self.extend(request, params)
 
     async def create_order(self, symbol: str, type: OrderType, side: OrderSide, amount: float, price: Num = None, params={}):
@@ -5911,21 +5913,26 @@ class okx(Exchange, ImplicitAPI):
         elif api == 'private':
             self.check_required_credentials()
             # inject id in implicit api call
-            if method == 'POST' and (path == 'trade/batch-orders' or path == 'trade/order-algo' or path == 'trade/order'):
-                brokerId = self.safe_string(self.options, 'brokerId', 'e847386590ce4dBC')
-                if isinstance(params, list):
-                    for i in range(0, len(params)):
-                        entry = params[i]
-                        clientOrderId = self.safe_string(entry, 'clOrdId')
-                        if clientOrderId is None:
-                            entry['clOrdId'] = brokerId + self.uuid16()
-                            entry['tag'] = brokerId
-                            params[i] = entry
-                else:
-                    clientOrderId = self.safe_string(params, 'clOrdId')
-                    if clientOrderId is None:
-                        params['clOrdId'] = brokerId + self.uuid16()
-                        params['tag'] = brokerId
+            # if method == 'POST' and (path == 'trade/batch-orders' or path == 'trade/order-algo' or path == 'trade/order'):
+            #     brokerId = self.safe_string(self.options, 'brokerId', 'e847386590ce4dBC')
+            #     if isinstance(params, list):
+            #         for i in range(0, len(params)):
+            #             entry = params[i]
+            #             clientOrderId = self.safe_string(entry, 'clOrdId')
+            #             if clientOrderId is None:
+            #                 entry['clOrdId'] = brokerId + self.uuid16()
+            #                 entry['tag'] = brokerId
+            #                 params[i] = entry
+            #             }
+            #         }
+            #     else:
+            #         clientOrderId = self.safe_string(params, 'clOrdId')
+            #         if clientOrderId is None:
+            #             params['clOrdId'] = brokerId + self.uuid16()
+            #             params['tag'] = brokerId
+            #         }
+            #     }
+            # }
             timestamp = self.iso8601(self.nonce())
             headers = {
                 'OK-ACCESS-KEY': self.apiKey,

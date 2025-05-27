@@ -224,7 +224,7 @@ class ellipx(Exchange, ImplicitAPI):
             'options': {
                 'defaultType': 'spot',
                 'recvWindow': 5 * 1000,
-                'broker': 'CCXT',
+                # 'broker': 'CCXT',
                 'networks': {
                     'Bitcoin': 'Bitcoin',
                     'Ethereum': 'ERC20',

@@ -403,9 +403,9 @@ class huobijp(Exchange, ImplicitAPI):
                 'createOrderMethod': 'privatePostOrderOrdersPlace',
                 'currencyToPrecisionRoundingMode': TRUNCATE,
                 'language': 'en-US',
-                'broker': {
-                    'id': 'AA03022abc',
-                },
+                # 'broker': {
+                #     'id': 'AA03022abc',
+                # },
             },
             'commonCurrencies': {
                 # https://github.com/ccxt/ccxt/issues/6081
@@ -1420,12 +1420,13 @@ class huobijp(Exchange, ImplicitAPI):
             'type': side + '-' + type,
         }
         clientOrderId = self.safe_string_2(params, 'clientOrderId', 'client-order-id')  # must be 64 chars max and unique within 24 hours
-        if clientOrderId is None:
-            broker = self.safe_value(self.options, 'broker', {})
-            brokerId = self.safe_string(broker, 'id')
-            request['client-order-id'] = brokerId + self.uuid()
-        else:
-            request['client-order-id'] = clientOrderId
+        # if clientOrderId is None:
+        #     broker = self.safe_value(self.options, 'broker', {})
+        #     brokerId = self.safe_string(broker, 'id')
+        #     request['client-order-id'] = brokerId + self.uuid()
+        # else:
+        request['client-order-id'] = clientOrderId
+        # }
         params = self.omit(params, ['clientOrderId', 'client-order-id'])
         if (type == 'market') and (side == 'buy'):
             quoteAmount = None

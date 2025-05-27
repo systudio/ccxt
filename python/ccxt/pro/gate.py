@@ -1917,7 +1917,7 @@ class gate(ccxt.async_support.gate):
         }
         if (channel == 'spot.order_place') or (channel == 'futures.order_place'):
             payload['req_header'] = {
-                'X-Gate-Channel-Id': 'ccxt',
+                # 'X-Gate-Channel-Id': 'ccxt',
             }
         request: dict = {
             'id': requestId,

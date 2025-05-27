@@ -1789,7 +1789,7 @@ class bitopro(Exchange, ImplicitAPI):
         query = self.omit(params, self.extract_params(path))
         if headers is None:
             headers = {}
-        headers['X-BITOPRO-API'] = 'ccxt'
+        # headers['X-BITOPRO-API'] = 'ccxt'
         if api == 'private':
             self.check_required_credentials()
             if method == 'POST' or method == 'PUT':

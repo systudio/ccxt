@@ -2021,7 +2021,7 @@ class defx(Exchange, ImplicitAPI):
                 url += '?' + self.rawencode(params)
         else:
             self.check_required_credentials()
-            headers = {'X-DEFX-SOURCE': 'ccxt'}
+            headers = {}
             url += 'auth/' + pathWithParams
             nonce = str(self.milliseconds())
             payload = nonce

@@ -4876,12 +4876,14 @@ class xt(Exchange, ImplicitAPI):
             recvWindow = self.safe_string(query, 'recvWindow', defaultRecvWindow)
             timestamp = self.number_to_string(self.nonce())
             body = query
-            if (payload == '/v4/order') or (payload == '/future/trade/v1/order/create') or (payload == '/future/trade/v1/entrust/create-plan') or (payload == '/future/trade/v1/entrust/create-profit') or (payload == '/future/trade/v1/order/create-batch'):
-                id = 'CCXT'
-                if payload.find('future') > -1:
-                    body['clientMedia'] = id
-                else:
-                    body['media'] = id
+            # if (payload == '/v4/order') or (payload == '/future/trade/v1/order/create') or (payload == '/future/trade/v1/entrust/create-plan') or (payload == '/future/trade/v1/entrust/create-profit') or (payload == '/future/trade/v1/order/create-batch'):
+            #     id = 'CCXT'
+            #     if payload.find('future') > -1:
+            #         body['clientMedia'] = id
+            #     else:
+            #         body['media'] = id
+            #     }
+            # }
             isUndefinedBody = ((method == 'GET') or (path == 'order/{orderId}') or (path == 'ws-token'))
             if (method == 'PUT') and (endpoint == 'spot'):
                 isUndefinedBody = False

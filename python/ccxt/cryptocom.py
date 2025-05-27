@@ -364,7 +364,7 @@ class cryptocom(Exchange, ImplicitAPI):
                     'ERC20': 'ETH',
                     'TRC20': 'TRON',
                 },
-                'broker': 'CCXT',
+                # 'broker': 'CCXT',
             },
             'features': {
                 'default': {
@@ -1269,8 +1269,8 @@ class cryptocom(Exchange, ImplicitAPI):
         }
         if (uppercaseType == 'LIMIT') or (uppercaseType == 'STOP_LIMIT') or (uppercaseType == 'TAKE_PROFIT_LIMIT'):
             request['price'] = self.price_to_precision(symbol, price)
-        broker = self.safe_string(self.options, 'broker', 'CCXT')
-        request['broker_id'] = broker
+        # broker = self.safe_string(self.options, 'broker', 'CCXT')
+        # request['broker_id'] = broker
         marketType = None
         marginMode = None
         marketType, params = self.handle_market_type_and_params('createOrder', market, params)
@@ -1468,8 +1468,8 @@ class cryptocom(Exchange, ImplicitAPI):
         }
         if (uppercaseType == 'LIMIT') or (uppercaseType == 'STOP_LIMIT') or (uppercaseType == 'TAKE_PROFIT_LIMIT'):
             request['price'] = self.price_to_precision(symbol, price)
-        broker = self.safe_string(self.options, 'broker', 'CCXT')
-        request['broker_id'] = broker
+        # broker = self.safe_string(self.options, 'broker', 'CCXT')
+        # request['broker_id'] = broker
         timeInForce = self.safe_string_upper_2(params, 'timeInForce', 'time_in_force')
         if timeInForce is not None:
             if timeInForce == 'GTC':

@@ -1618,14 +1618,16 @@ class okcoin(Exchange, ImplicitAPI):
                 request['slTriggerPx'] = self.price_to_precision(symbol, stopLossPrice)
                 request['slOrdPx'] = '-1' if (slOrdPx is None) else self.price_to_precision(symbol, slOrdPx)
                 request['slTriggerPxType'] = slTriggerPxType
-        if clientOrderId is None:
-            brokerId = self.safe_string(self.options, 'brokerId')
-            if brokerId is not None:
-                request['clOrdId'] = brokerId + self.uuid16()
-                request['tag'] = brokerId
-        else:
-            request['clOrdId'] = clientOrderId
-            params = self.omit(params, ['clOrdId', 'clientOrderId'])
+        # if clientOrderId is None:
+        #     brokerId = self.safe_string(self.options, 'brokerId')
+        #     if brokerId is not None:
+        #         request['clOrdId'] = brokerId + self.uuid16()
+        #         request['tag'] = brokerId
+        #     }
+        # else:
+        request['clOrdId'] = clientOrderId
+        params = self.omit(params, ['clOrdId', 'clientOrderId'])
+        # }
         return self.extend(request, params)
 
     def cancel_order(self, id: str, symbol: Str = None, params={}):

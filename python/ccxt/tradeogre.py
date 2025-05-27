@@ -783,7 +783,7 @@ class tradeogre(Exchange, ImplicitAPI):
         if api == 'private':
             headers = {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Referer': 'CCXT',
+                # 'Referer': 'CCXT',
                 'authorization': 'Basic ' + self.string_to_base64(self.apiKey + ':' + self.secret),
             }
             if method != 'GET':

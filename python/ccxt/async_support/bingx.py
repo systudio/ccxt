@@ -537,7 +537,7 @@ class bingx(Exchange, ImplicitAPI):
                     'SFUTURES': 'future',
                 },
                 'recvWindow': 5 * 1000,  # 5 sec
-                'broker': 'CCXT',
+                # 'broker': 'CCXT',
                 'defaultNetworks': {
                     'ETH': 'ETH',
                     'USDT': 'ERC20',
@@ -6235,7 +6235,7 @@ class bingx(Exchange, ImplicitAPI):
             signature = self.hmac(self.encode(encodeRequest), self.encode(self.secret), hashlib.sha256)
             headers = {
                 'X-BX-APIKEY': self.apiKey,
-                'X-SOURCE-KEY': self.safe_string(self.options, 'broker', 'CCXT'),
+                # 'X-SOURCE-KEY': self.safe_string(self.options, 'broker', 'CCXT'),
             }
             if isJsonContentType:
                 headers['Content-Type'] = 'application/json'

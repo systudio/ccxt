@@ -661,7 +661,7 @@ class gate(Exchange, ImplicitAPI):
                 'secret': True,
             },
             'headers': {
-                'X-Gate-Channel-Id': 'ccxt',
+                # 'X-Gate-Channel-Id': 'ccxt',
             },
             'options': {
                 'timeDifference': 0,  # the difference between system clock and exchange clock

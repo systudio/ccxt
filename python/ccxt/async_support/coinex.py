@@ -457,7 +457,7 @@ class coinex(Exchange, ImplicitAPI):
                 },
             },
             'options': {
-                'brokerId': 'x-167673045',
+                # 'brokerId': 'x-167673045',
                 'createMarketBuyOrderRequiresPrice': True,
                 'defaultType': 'spot',  # spot, swap, margin
                 'defaultSubType': 'linear',  # linear, inverse
@@ -2123,12 +2123,13 @@ class coinex(Exchange, ImplicitAPI):
         request: dict = {
             'market': market['id'],
         }
-        if clientOrderId is None:
-            defaultId = 'x-167673045'
-            brokerId = self.safe_string(self.options, 'brokerId', defaultId)
-            request['client_id'] = brokerId + '-' + self.uuid16()
-        else:
-            request['client_id'] = clientOrderId
+        # if clientOrderId is None:
+        #     defaultId = 'x-167673045'
+        #     brokerId = self.safe_string(self.options, 'brokerId', defaultId)
+        #     request['client_id'] = brokerId + '-' + self.uuid16()
+        # else:
+        request['client_id'] = clientOrderId
+        # }
         if (stopLossPrice is None) and (takeProfitPrice is None):
             if not reduceOnly:
                 request['side'] = side
@@ -5680,21 +5681,23 @@ class coinex(Exchange, ImplicitAPI):
             lastWords = lastPart.split('_')
             numWords = len(lastWords)
             lastWord = self.safe_string(lastWords, numWords - 1, '')
-            if (firstPart == 'order') and (lastWord == 'limit' or lastWord == 'market'):
-                # inject in implicit API calls
-                # POST /order/limit - Place limit orders
-                # POST /order/market - Place market orders
-                # POST /order/stop/limit - Place stop limit orders
-                # POST /order/stop/market - Place stop market orders
-                # POST /perpetual/v1/order/put_limit - Place limit orders
-                # POST /perpetual/v1/order/put_market - Place market orders
-                # POST /perpetual/v1/order/put_stop_limit - Place stop limit orders
-                # POST /perpetual/v1/order/put_stop_market - Place stop market orders
-                clientOrderId = self.safe_string(params, 'client_id')
-                if clientOrderId is None:
-                    defaultId = 'x-167673045'
-                    brokerId = self.safe_value(self.options, 'brokerId', defaultId)
-                    query['client_id'] = brokerId + '_' + self.uuid16()
+            # if (firstPart == 'order') and (lastWord == 'limit' or lastWord == 'market'):
+            #     # inject in implicit API calls
+            #     # POST /order/limit - Place limit orders
+            #     # POST /order/market - Place market orders
+            #     # POST /order/stop/limit - Place stop limit orders
+            #     # POST /order/stop/market - Place stop market orders
+            #     # POST /perpetual/v1/order/put_limit - Place limit orders
+            #     # POST /perpetual/v1/order/put_market - Place market orders
+            #     # POST /perpetual/v1/order/put_stop_limit - Place stop limit orders
+            #     # POST /perpetual/v1/order/put_stop_market - Place stop market orders
+            #     clientOrderId = self.safe_string(params, 'client_id')
+            #     if clientOrderId is None:
+            #         defaultId = 'x-167673045'
+            #         brokerId = self.safe_value(self.options, 'brokerId', defaultId)
+            #         query['client_id'] = brokerId + '_' + self.uuid16()
+            #     }
+            # }
         if requestUrl == 'perpetualPrivate':
             self.check_required_credentials()
             query = self.extend({

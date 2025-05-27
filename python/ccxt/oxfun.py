@@ -2407,7 +2407,7 @@ class oxfun(Exchange, ImplicitAPI):
         request: dict = {
             'marketCode': market['id'],
             'side': side.upper(),
-            'source': 1000,
+            # 'source': 1000,
         }
         cost = self.safe_string_2(params, 'cost', 'amount')
         if cost is not None:

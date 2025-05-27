@@ -423,7 +423,7 @@ class derive(Exchange, ImplicitAPI):
             },
             'options': {
                 'deriveWalletAddress': '',  # a derive wallet address "0x"-prefixed hexstring
-                'id': '0x0ad42b8e602c2d3d475ae52d678cf63d84ab2749',
+                # 'id': '0x0ad42b8e602c2d3d475ae52d678cf63d84ab2749',
             },
         })
 
@@ -1230,7 +1230,7 @@ class derive(Exchange, ImplicitAPI):
             'max_fee': maxFeeString,
             'subaccount_id': subaccountId,
             'signature_expiry_sec': signatureExpiry,
-            'referral_code': self.safe_string(self.options, 'id', '0x0ad42b8e602c2d3d475ae52d678cf63d84ab2749'),
+            # 'referral_code': self.safe_string(self.options, 'id', '0x0ad42b8e602c2d3d475ae52d678cf63d84ab2749'),
             'signer': self.walletAddress,
         }
         if reduceOnly is not None:

@@ -314,7 +314,7 @@ class hashkey(Exchange, ImplicitAPI):
                 },
             },
             'options': {
-                'broker': '10000700011',
+                # 'broker': '10000700011',
                 'recvWindow': None,
                 'sandboxMode': False,
                 'networks': {
@@ -4132,7 +4132,7 @@ class hashkey(Exchange, ImplicitAPI):
                     url += '?' + query
                 else:
                     body = query
-            headers['INPUT-SOURCE'] = self.safe_string(self.options, 'broker', '10000700011')
+            # headers['INPUT-SOURCE'] = self.safe_string(self.options, 'broker', '10000700011')
             headers['broker_sign'] = signature
         else:
             query = self.urlencode(params)

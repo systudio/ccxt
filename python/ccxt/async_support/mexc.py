@@ -688,7 +688,7 @@ class mexc(Exchange, ImplicitAPI):
                 },
                 'recvWindow': 5 * 1000,  # 5 sec, default
                 'maxTimeTillEnd': 90 * 86400 * 1000 - 1,  # 90 days
-                'broker': 'CCXT',
+                # 'broker': 'CCXT',
             },
             'features': {
                 'default': {
@@ -5740,7 +5740,7 @@ class mexc(Exchange, ImplicitAPI):
                 url += '&' + 'signature=' + signature
                 headers = {
                     'X-MEXC-APIKEY': self.apiKey,
-                    'source': self.safe_string(self.options, 'broker', 'CCXT'),
+                    # 'source': self.safe_string(self.options, 'broker', 'CCXT'),
                 }
             if (method == 'POST') or (method == 'PUT') or (method == 'DELETE'):
                 headers['Content-Type'] = 'application/json'
@@ -5758,7 +5758,7 @@ class mexc(Exchange, ImplicitAPI):
                     'ApiKey': self.apiKey,
                     'Request-Time': timestamp,
                     'Content-Type': 'application/json',
-                    'source': self.safe_string(self.options, 'broker', 'CCXT'),
+                    # 'source': self.safe_string(self.options, 'broker', 'CCXT'),
                 }
                 if method == 'POST':
                     auth = self.json(params)

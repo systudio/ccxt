@@ -672,7 +672,7 @@ class cryptomus(Exchange, ImplicitAPI):
         request: dict = {
             'market': market['id'],
             'direction': side,
-            'tag': 'ccxt',
+            # 'tag': 'ccxt',
         }
         clientOrderId = self.safe_string(params, 'clientOrderId')
         if clientOrderId is not None:

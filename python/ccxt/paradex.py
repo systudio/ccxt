@@ -304,7 +304,7 @@ class paradex(Exchange, ImplicitAPI):
             },
             'options': {
                 'paradexAccount': None,  # add {"privateKey": A, "publicKey": B, "address": C}
-                'broker': 'CCXT',
+                # 'broker': 'CCXT',
             },
             'features': {
                 'spot': None,
@@ -2409,7 +2409,7 @@ class paradex(Exchange, ImplicitAPI):
         elif api == 'private':
             headers = {
                 'Accept': 'application/json',
-                'PARADEX-PARTNER': self.safe_string(self.options, 'broker', 'CCXT'),
+                # 'PARADEX-PARTNER': self.safe_string(self.options, 'broker', 'CCXT'),
             }
             # TODO: optimize
             if path == 'auth':

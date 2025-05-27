@@ -1183,9 +1183,9 @@ class htx(Exchange, ImplicitAPI):
                 'fetchOrdersByStatesMethod': 'spot_private_get_v1_order_orders',  # 'spot_private_get_v1_order_history'  # https://github.com/ccxt/ccxt/pull/5392
                 'createMarketBuyOrderRequiresPrice': True,
                 'language': 'en-US',
-                'broker': {
-                    'id': 'AA03022abc',
-                },
+                # 'broker': {
+                #     'id': 'AA03022abc',
+                # },
                 'accountsByType': {
                     'spot': 'pro',
                     'funding': 'pro',
@@ -5096,12 +5096,13 @@ class htx(Exchange, ImplicitAPI):
             orderType = 'ioc'
         request['type'] = side + '-' + orderType
         clientOrderId = self.safe_string_2(params, 'clientOrderId', 'client-order-id')  # must be 64 chars max and unique within 24 hours
-        if clientOrderId is None:
-            broker = self.safe_value(self.options, 'broker', {})
-            brokerId = self.safe_string(broker, 'id')
-            request['client-order-id'] = brokerId + self.uuid()
-        else:
-            request['client-order-id'] = clientOrderId
+        # if clientOrderId is None:
+        #     broker = self.safe_value(self.options, 'broker', {})
+        #     brokerId = self.safe_string(broker, 'id')
+        #     request['client-order-id'] = brokerId + self.uuid()
+        # else:
+        request['client-order-id'] = clientOrderId
+        # }
         if marginMode == 'cross':
             request['source'] = 'super-margin-api'
         elif marginMode == 'isolated':
@@ -5221,9 +5222,9 @@ class htx(Exchange, ImplicitAPI):
                 request['offset'] = 'close'
             else:
                 request['offset'] = 'open'
-        broker = self.safe_value(self.options, 'broker', {})
-        brokerId = self.safe_string(broker, 'id')
-        request['channel_code'] = brokerId
+        # broker = self.safe_value(self.options, 'broker', {})
+        # brokerId = self.safe_string(broker, 'id')
+        # request['channel_code'] = brokerId
         params = self.omit(params, ['reduceOnly', 'triggerPrice', 'stopPrice', 'stopLossPrice', 'takeProfitPrice', 'triggerType', 'leverRate', 'timeInForce', 'leverage', 'trailingPercent', 'trailingTriggerPrice', 'hedged'])
         return self.extend(request, params)
 
@@ -6964,19 +6965,23 @@ class htx(Exchange, ImplicitAPI):
                     url += '?' + self.urlencode(query)
             elif access == 'private':
                 self.check_required_credentials()
-                if method == 'POST':
-                    options = self.safe_value(self.options, 'broker', {})
-                    id = self.safe_string(options, 'id', 'AA03022abc')
-                    if path.find('cancel') == -1 and path.endswith('order'):
-                        # swap order placement
-                        channelCode = self.safe_string(params, 'channel_code')
-                        if channelCode is None:
-                            params['channel_code'] = id
-                    elif path.endswith('orders/place'):
-                        # spot order placement
-                        clientOrderId = self.safe_string(params, 'client-order-id')
-                        if clientOrderId is None:
-                            params['client-order-id'] = id + self.uuid()
+                # if method == 'POST':
+                #     options = self.safe_value(self.options, 'broker', {})
+                #     id = self.safe_string(options, 'id', 'AA03022abc')
+                #     if path.find('cancel') == -1 and path.endswith('order'):
+                #         # swap order placement
+                #         channelCode = self.safe_string(params, 'channel_code')
+                #         if channelCode is None:
+                #             params['channel_code'] = id
+                #         }
+                #     elif path.endswith('orders/place'):
+                #         # spot order placement
+                #         clientOrderId = self.safe_string(params, 'client-order-id')
+                #         if clientorderid is None:
+                #             params['client-order-id'] = id + self.uuid()
+                #         }
+                #     }
+                # }
                 timestamp = self.ymdhms(self.nonce(), 'T')
                 request: dict = {
                     'SignatureMethod': 'HmacSHA256',

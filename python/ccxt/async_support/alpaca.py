@@ -313,7 +313,7 @@ class alpaca(Exchange, ImplicitAPI):
                 },
             },
             'headers': {
-                'APCA-PARTNER-ID': 'ccxt',
+                # 'APCA-PARTNER-ID': 'ccxt',
             },
             'options': {
                 'defaultExchange': 'CBSE',

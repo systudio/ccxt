@@ -378,7 +378,7 @@ class bitopro(ccxt.async_support.bitopro):
         self.extend_exchange_options(defaultOptions)
         originalHeaders = self.options['ws']['options']['headers']
         headers: dict = {
-            'X-BITOPRO-API': 'ccxt',
+            # 'X-BITOPRO-API': 'ccxt',
             'X-BITOPRO-APIKEY': self.apiKey,
             'X-BITOPRO-PAYLOAD': payload,
             'X-BITOPRO-SIGNATURE': signature,
