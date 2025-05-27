@@ -2107,7 +2107,7 @@ export default class defx extends Exchange {
             }
         } else {
             this.checkRequiredCredentials ();
-            headers = { 'X-DEFX-SOURCE': 'ccxt' };
+            headers = {  };
             url += 'auth/' + pathWithParams;
             const nonce = this.milliseconds ().toString ();
             let payload = nonce;

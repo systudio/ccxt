@@ -749,20 +749,20 @@ export default class kucoin extends Exchange {
                         },
                     },
                 },
-                'partner': {
-                    // the support for spot and future exchanges as separate settings
-                    'spot': {
-                        'id': 'ccxt',
-                        'key': '9e58cc35-5b5e-4133-92ec-166e3f077cb8',
-                    },
-                    'future': {
-                        'id': 'ccxtfutures',
-                        'key': '1b327198-f30c-4f14-a0ac-918871282f15',
-                    },
-                    // exchange-wide settings are also supported
-                    // 'id': 'ccxt'
-                    // 'key': '9e58cc35-5b5e-4133-92ec-166e3f077cb8',
-                },
+                // 'partner': {
+                //     // the support for spot and future exchanges as separate settings
+                //     'spot': {
+                //         'id': 'ccxt',
+                //         'key': '9e58cc35-5b5e-4133-92ec-166e3f077cb8',
+                //     },
+                //     'future': {
+                //         'id': 'ccxtfutures',
+                //         'key': '1b327198-f30c-4f14-a0ac-918871282f15',
+                //     },
+                //     // exchange-wide settings are also supported
+                //     // 'id': 'ccxt'
+                //     // 'key': '9e58cc35-5b5e-4133-92ec-166e3f077cb8',
+                // },
                 'accountsByType': {
                     'spot': 'trade',
                     'margin': 'margin',

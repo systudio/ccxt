@@ -1971,7 +1971,7 @@ export default class coinmetro extends Exchange {
         if (headers === undefined) {
             headers = {};
         }
-        headers['CCXT'] = 'true';
+        // headers['CCXT'] = 'true';
         if (api === 'private') {
             if ((this.uid === undefined) && (this.apiKey !== undefined)) {
                 this.uid = this.apiKey;

@@ -402,7 +402,7 @@ export default class bitopro extends bitoproRest {
         this.extendExchangeOptions (defaultOptions);
         const originalHeaders = this.options['ws']['options']['headers'];
         const headers: Dict = {
-            'X-BITOPRO-API': 'ccxt',
+            // 'X-BITOPRO-API': 'ccxt',
             'X-BITOPRO-APIKEY': this.apiKey,
             'X-BITOPRO-PAYLOAD': payload,
             'X-BITOPRO-SIGNATURE': signature,

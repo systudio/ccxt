@@ -828,7 +828,7 @@ export default class tradeogre extends Exchange {
         if (api === 'private') {
             headers = {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Referer': 'CCXT',
+                // 'Referer': 'CCXT',
                 'authorization': 'Basic ' + this.stringToBase64 (this.apiKey + ':' + this.secret),
             };
             if (method !== 'GET') {

@@ -5099,14 +5099,14 @@ export default class xt extends Exchange {
             const recvWindow = this.safeString (query, 'recvWindow', defaultRecvWindow);
             const timestamp = this.numberToString (this.nonce ());
             body = query;
-            if ((payload === '/v4/order') || (payload === '/future/trade/v1/order/create') || (payload === '/future/trade/v1/entrust/create-plan') || (payload === '/future/trade/v1/entrust/create-profit') || (payload === '/future/trade/v1/order/create-batch')) {
-                const id = 'CCXT';
-                if (payload.indexOf ('future') > -1) {
-                    body['clientMedia'] = id;
-                } else {
-                    body['media'] = id;
-                }
-            }
+            // if ((payload === '/v4/order') || (payload === '/future/trade/v1/order/create') || (payload === '/future/trade/v1/entrust/create-plan') || (payload === '/future/trade/v1/entrust/create-profit') || (payload === '/future/trade/v1/order/create-batch')) {
+            //     const id = 'CCXT';
+            //     if (payload.indexOf ('future') > -1) {
+            //         body['clientMedia'] = id;
+            //     } else {
+            //         body['media'] = id;
+            //     }
+            // }
             let isUndefinedBody = ((method === 'GET') || (path === 'order/{orderId}') || (path === 'ws-token'));
             if ((method === 'PUT') && (endpoint === 'spot')) {
                 isUndefinedBody = false;

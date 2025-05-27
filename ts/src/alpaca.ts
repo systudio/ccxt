@@ -303,7 +303,7 @@ export default class alpaca extends Exchange {
                 },
             },
             'headers': {
-                'APCA-PARTNER-ID': 'ccxt',
+                // 'APCA-PARTNER-ID': 'ccxt',
             },
             'options': {
                 'defaultExchange': 'CBSE',

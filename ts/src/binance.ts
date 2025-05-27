@@ -1296,15 +1296,15 @@ export default class binance extends Exchange {
                     'limit': 'FULL', // we change it from 'ACK' by default to 'FULL' (returns immediately if limit is not hit)
                 },
                 'quoteOrderQty': true, // whether market orders support amounts in quote currency
-                'broker': {
-                    'spot': 'x-TKT5PX2F',
-                    'margin': 'x-TKT5PX2F',
-                    'future': 'x-cvBPrNm9',
-                    'delivery': 'x-xcKtGhcu',
-                    'swap': 'x-cvBPrNm9',
-                    'option': 'x-xcKtGhcu',
-                    'inverse': 'x-xcKtGhcu',
-                },
+                // 'broker': {
+                //     'spot': 'x-TKT5PX2F',
+                //     'margin': 'x-TKT5PX2F',
+                //     'future': 'x-cvBPrNm9',
+                //     'delivery': 'x-xcKtGhcu',
+                //     'swap': 'x-cvBPrNm9',
+                //     'option': 'x-xcKtGhcu',
+                //     'inverse': 'x-xcKtGhcu',
+                // },
                 'accountsByType': {
                     'main': 'MAIN',
                     'spot': 'MAIN',

@@ -1867,7 +1867,7 @@ export default class bitopro extends Exchange {
         if (headers === undefined) {
             headers = {};
         }
-        headers['X-BITOPRO-API'] = 'ccxt';
+        // headers['X-BITOPRO-API'] = 'ccxt';
         if (api === 'private') {
             this.checkRequiredCredentials ();
             if (method === 'POST' || method === 'PUT') {

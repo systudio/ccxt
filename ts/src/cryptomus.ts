@@ -685,7 +685,7 @@ export default class cryptomus extends Exchange {
         const request: Dict = {
             'market': market['id'],
             'direction': side,
-            'tag': 'ccxt',
+            // 'tag': 'ccxt',
         };
         const clientOrderId = this.safeString (params, 'clientOrderId');
         if (clientOrderId !== undefined) {

@@ -2489,7 +2489,7 @@ export default class oxfun extends Exchange {
         const request: Dict = {
             'marketCode': market['id'],
             'side': side.toUpperCase (),
-            'source': 1000,
+            // 'source': 1000,
         };
         const cost = this.safeString2 (params, 'cost', 'amount');
         if (cost !== undefined) {

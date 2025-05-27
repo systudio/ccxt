@@ -417,7 +417,7 @@ export default class derive extends Exchange {
             },
             'options': {
                 'deriveWalletAddress': '', // a derive wallet address "0x"-prefixed hexstring
-                'id': '0x0ad42b8e602c2d3d475ae52d678cf63d84ab2749',
+                // 'id': '0x0ad42b8e602c2d3d475ae52d678cf63d84ab2749',
             },
         });
     }
@@ -1259,7 +1259,7 @@ export default class derive extends Exchange {
             'max_fee': maxFeeString,
             'subaccount_id': subaccountId,
             'signature_expiry_sec': signatureExpiry,
-            'referral_code': this.safeString (this.options, 'id', '0x0ad42b8e602c2d3d475ae52d678cf63d84ab2749'),
+            // 'referral_code': this.safeString (this.options, 'id', '0x0ad42b8e602c2d3d475ae52d678cf63d84ab2749'),
             'signer': this.walletAddress,
         };
         if (reduceOnly !== undefined) {
